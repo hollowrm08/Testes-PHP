@@ -11,9 +11,12 @@
         if (isset($_POST['enviar-formulario'])) {
             $erros = array();
 
+            // Filtros
+
             //INPUT_POST == tipo de input
             //'idade' == nome do campo
             //FILTER_VALIDATE_INT == filtro
+
 
             if (!$idade = filter_input(INPUT_POST, 'idade', FILTER_VALIDATE_INT)) {
                 $erros[] = "idade precisa ser um inteiro";
@@ -31,14 +34,15 @@
                 $erros[] = "url inválida";
             }   
 
+            // Printar erros
+
             if (!empty($erros)){
                 foreach($erros as $value) {
                     echo "<li>$value </li>";
                 }
             }
             else {
-                echo "Seus dados estão corretos";
-                
+                echo "Seus dados estão corretos";    
                 
             }
         }
