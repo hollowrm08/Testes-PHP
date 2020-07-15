@@ -1,7 +1,16 @@
 <?php
+    //Conexão
+    include_once 'php_action/db_connect.php';
+
     //Header
     include_once 'includes/header.php';
+
+    //Mensagem
+    include_once 'includes/message.php';
+
 ?>
+
+
 <div class="row">
     <div class="col s12 m6 push-m3">
         <h3 class="light"> Clientes</h3>
@@ -16,11 +25,18 @@
             </thead>
 
             <tbody>
+                <?php
+                    $sql = "select * from tb_cliente";
+                    $resultado = mysqli_query($connect, $sql);
+                    while ($dados = mysqli_fetch_array($resultado)) {
+                        
+                    
+                ?>
                 <tr>
-                    <td> Rodrigo</td>
-                    <td> Mello</td>
-                    <td> hollowrm08@gmail.com</td>
-                    <td> 17</td>
+                    <td> <?php echo $dados['nm_nome']; ?> </td>
+                    <td> <?php echo $dados['nm_sobrenome']; ?> </td>
+                    <td> <?php echo $dados['nm_email'] ?> </td>
+                    <td> <?php echo $dados['nu_idade'] ?> </td>
                     <td> <a href="" class="btn-floating orange">
                         <i class="material-icons">edit</i>
                     </a></td>
@@ -28,10 +44,13 @@
                         <i class="material-icons">delete</i>
                     </a></td>
                 </tr>
+                <?php
+                    }
+                ?>
             </tbody>
         </table>
         <br>
-        <a href="" class="btn">Adicionar Cliente</a>
+        <a href="adicionar.php" class="btn">Adicionar Cliente</a>
     </div>
 
 </div>
