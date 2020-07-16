@@ -16,24 +16,26 @@
         return $var;
     }
 
-    if(isset($_POST['btn-cadastrar'])){
+    if(isset($_POST['btn-editar'])){
         $nome = clear($_POST['nome']);
         $sobrenome = clear($_POST['sobrenome']);
         $email = clear($_POST['email']);
         $idade = clear($_POST['idade']);
 
-        $sql = "Insert into tb_cliente (nm_nome, nm_sobrenome, nm_email, nu_idade) 
-        values ('$nome', '$sobrenome', '$email', '$idade')";
+        $id = clear($_POST['id']);
+
+        $sql = "update tb_cliente set nm_nome = '$nome', nm_sobrenome = '$sobrenome', nm_email = '$email', nu_idade = '$idade' where id_cliente = '$id'";
 
         if (mysqli_query($connect, $sql)) {
-            $_SESSION['mensagem'] = "Cadastrado com Sucesso";
+            $_SESSION['mensagem'] = "Atualizado com Sucesso";
             header('Location: ../index.php');
         }
         else {
-            $_SESSION['mensagem'] = "Erro ao Cadastrar";
+            $_SESSION['mensagem'] = "Erro ao Atualizar";
             header('Location: ../index.php');
         }
-        mysqli_close($connect); 
+        mysqli_close($connect);
     }
+    
 
 ?>
